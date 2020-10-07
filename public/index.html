@@ -13,6 +13,11 @@
     <script>
         var socket = io();
 
+        socket.on('active-bands',function(payload){
+            console.clear();
+            console.table(payload);
+        });
+
         socket.on('connect',function(){
             console.log('Conectado con el server')
         });
@@ -21,9 +26,12 @@
             console.log('Se perdio la conexion')
         });
 
-        socket.emit('mensaje',{nombre:'Bruno'});
+        //socket.emit('mensaje',{nombre:'Bruno'});
 
         socket.on('mensaje',function(payload){
+            console.log('Escuchando',payload)
+        });
+        socket.on('nuevo-mensaje',function(payload){
             console.log('Escuchando',payload)
         })
     </script>
